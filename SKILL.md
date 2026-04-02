@@ -1,7 +1,7 @@
 ---
 name: github-repo-manager
 description: Use when managing GitHub repositories - listing, viewing details, searching, deleting, creating, renaming, changing visibility, forking, or archiving repos via gh CLI.
-version: 1.2.0
+version: 1.3.0
 author: dt418
 source: https://github.com/dt418/github-repo-manager
 tags:
@@ -23,172 +23,172 @@ tools:
 
 # GitHub Repo Manager
 
-Skill này giúp quản lý GitHub repositories thông qua GitHub CLI (gh). Bao gồm các thao tác cơ bản như xem danh sách, tạo mới, xóa, tìm kiếm, và cập nhật repo properties.
+This skill helps manage GitHub repositories using GitHub CLI (gh). Includes basic operations like listing, creating, deleting, searching, and updating repo properties.
 
 ## When to Use
 
-- Khi user muốn xem danh sách repositories của họ hoặc người khác
-- Khi cần tạo repository mới trên GitHub
-- Khi cần xóa một repository (cẩn thận - không thể khôi phục)
-- Khi cần tìm kiếm repositories theo từ khóa hoặc owner
-- Khi cần thay đổi visibility (public/private) của repo
-- Khi cần fork một repo về tài khoản của mình
-- Khi cần đổi tên hoặc archive repository
+- When user wants to view their or others' repositories
+- When need to create a new repository on GitHub
+- When need to delete a repository (careful - irreversible!)
+- When need to search repositories by keyword or owner
+- When need to change visibility (public/private) of repo
+- When need to fork a repo to your account
+- When need to rename or archive repository
 
 ## Prerequisites
 
-Kiểm tra authentication trước khi sử dụng:
+Check authentication before use:
 ```bash
 gh auth status
 ```
 
-Nếu chưa login, chạy:
+If not logged in, run:
 ```bash
 gh auth login
 ```
 
 ## Commands
 
-Dưới đây là các command cơ bản và nâng cao để quản lý GitHub repositories.
+Below are basic and advanced commands for managing GitHub repositories.
 
-### 1. List Repositories - Liệt kê Repositories
+### 1. List Repositories
 
-Liệt kê tất cả repositories của một user:
+List all repositories for a user:
 ```bash
 gh repo list <username> --limit 100
 ```
 
-Liệt kê với JSON để dễ parse:
+List with JSON for easier parsing:
 ```bash
 gh repo list <username> --limit 100 --json name,visibility,description,createdAt,updatedAt
 ```
 
-Lọc theo visibility:
+Filter by visibility:
 ```bash
 gh repo list <username> --visibility public
 gh repo list <username> --visibility private
 ```
 
-### 2. View Repository Details - Xem Chi Tiết Repo
+### 2. View Repository Details
 
-Xem thông tin chi tiết của một repo:
+View detailed information of a repo:
 ```bash
 gh repo view <owner>/<repo>
 ```
 
-Xem chi tiết dạng JSON:
+View details in JSON format:
 ```bash
 gh repo view <owner>/<repo> --json name,description,visibility,defaultBranch,url,createdAt,updatedAt,pushedAt
 ```
 
-### 3. Search Repositories - Tìm Kiếm Repositories
+### 3. Search Repositories
 
-Tìm kiếm repo theo owner:
+Search repos by owner:
 ```bash
 gh search repos --owner <username> --limit 20
 ```
 
-Tìm theo từ khóa:
+Search by keyword:
 ```bash
 gh search repos "<keyword>" --owner <username> --limit 20
 ```
 
-### 4. Delete Repository - Xóa Repository
+### 4. Delete Repository
 
-**CẨN THẬN**: Xóa vĩnh viễn, không thể khôi phục!
+**WARNING**: Permanent deletion, cannot be recovered!
 ```bash
 gh repo delete <owner>/<repo> --confirm
 ```
 
-### 5. Create Repository - Tạo Repository Mới
+### 5. Create Repository
 
-Tạo repo mới (empty):
+Create new (empty) repo:
 ```bash
 gh repo create <repo-name> --public
 gh repo create <repo-name> --private
 gh repo create <repo-name> --public --clone
 ```
 
-Tạo repo từ thư mục hiện tại (đẩy code lên GitHub):
+Create repo from current directory (push code to GitHub):
 ```bash
 gh repo create <repo-name> --source . --public
 ```
 
-### 6. Rename Repository - Đổi Tên Repo
+### 6. Rename Repository
 
-Đổi tên repository (chạy trong thư mục repo hoặc chỉ định owner/repo):
+Rename repository (run in repo directory or specify owner/repo):
 ```bash
 gh repo rename <new-name>
 ```
 
-### 7. Change Visibility - Đổi Visibility
+### 7. Change Visibility
 
-Đổi giữa public và private:
+Switch between public and private:
 ```bash
 gh repo edit <owner>/<repo> --visibility public
 gh repo edit <owner>/<repo> --visibility private
 ```
 
-### 8. Fork Repository - Fork Repo
+### 8. Fork Repository
 
-Fork một repo về tài khoản của mình:
+Fork a repo to your account:
 ```bash
 gh repo fork <owner>/<repo>
 ```
 
-### 9. Archive Repository - Lưu Trữ Repo
+### 9. Archive Repository
 
-Archive repository (không thể push nhưng vẫn có thể clone):
+Archive repository (cannot push but can still clone):
 ```bash
 gh repo edit <owner>/<repo> --archive
 ```
 
-## Common Workflows - Các Workflow Thường Dùng
+## Common Workflows
 
-### Xem tất cả repo của user
+### View all repos for a user
 ```bash
 gh repo list dt418 --json name,visibility,description,createdAt
 ```
 
-### Xóa nhiều repo cùng lúc
+### Delete multiple repos at once
 ```bash
-# Xóa từng repo
+# Delete each repo
 gh repo delete dt418/repo1 --confirm
 gh repo delete dt418/repo2 --confirm
 ```
 
-### Tìm repo cũ không dùng (trên 1 năm)
+### Find unused repos (over 1 year old)
 ```bash
 gh repo list dt418 --limit 100 --json name,createdAt,updatedAt | jq '.[] | select(.updatedAt < "2025-01-01")'
 ```
 
-### Kiểm tra repo có phải là fork không
+### Check if repo is a fork
 ```bash
 gh repo view dt418/repo-name --json isFork
 ```
 
-## Output Format - Định Dạng Output
+## Output Format
 
-Mặc định gh CLI output ra terminal. Sử dụng jq để parse:
+By default gh CLI outputs to terminal. Use jq to parse:
 
 ```bash
-# Lấy danh sách tên repo
+# Get list of repo names
 gh repo list dt418 --json name | jq '.[].name'
 
-# Lọc repo private
+# Filter private repos
 gh repo list dt418 --json name,visibility | jq '.[] | select(.visibility == "PRIVATE")'
 
-# Đếm số repo
+# Count number of repos
 gh repo list dt418 --json name | jq 'length'
 
-# Lấy description của repo
+# Get repo descriptions
 gh repo list dt418 --json name,description | jq '.[] | select(.description != null)'
 ```
 
-## Tips - Mẹo
+## Tips
 
-- Luôn dùng `--confirm` khi xóa để tránh prompt interactive
-- Sử dụng `gh api` để call GitHub API trực tiếp khi cần thao tác nâng cao
-- Chạy `gh help <command>` để xem thêm các options
-- Kiểm tra `gh auth status` trước khi thực hiện thao tác
-- Với repo không thuộc về mình, cần có quyền admin để thay đổi
+- Always use `--confirm` when deleting to avoid interactive prompts
+- Use `gh api` to call GitHub API directly when advanced operations needed
+- Run `gh help <command>` to see more options
+- Check `gh auth status` before performing operations
+- For repos not owned by you, need admin permissions to make changes
