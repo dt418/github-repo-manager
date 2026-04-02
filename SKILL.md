@@ -1,6 +1,15 @@
 ---
 name: github-repo-manager
 description: Use when managing GitHub repositories - listing, viewing details, searching, deleting, creating, renaming, changing visibility, forking, or archiving repos via gh CLI.
+version: 1.1.0
+author: Thanh Danh
+tags:
+  - github
+  - cli
+  - repo-management
+tools:
+  - Bash
+  - Read
 ---
 
 # GitHub Repo Manager
