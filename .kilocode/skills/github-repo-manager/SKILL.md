@@ -1,11 +1,15 @@
 ---
 name: github-repo-manager
-description: Use when user wants to manage GitHub repositories - list, view, search, delete, create, or update repos. Trigger on phrases like "list repos", "delete repo", "create repo", "xóa repo", "liệt kê repo", "quản lý repo", "github repo", "my repos", "repo của tôi".
+description: Quản lý GitHub repositories với gh CLI - list, view, search, delete, create, update repos. Trigger: "list repos", "delete repo", "create repo", "xóa repo", "liệt kê repo", "quản lý repo".
+version: 1.0.0
+author: Thanh Danh
+tags:
+  - github
+  - cli
+  - repo-management
 ---
 
 # GitHub Repo Manager
-
-Quản lý GitHub repositories với gh CLI.
 
 ## Prerequisites
 
