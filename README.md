@@ -76,9 +76,25 @@ Add to `.cursor/mcp.json`:
 }
 ```
 
-### Windsurf
+### OpenCode
 
-Add to `.windsurf/mcp.json`:
+Add to `~/.config/opencode/opencode.json`:
+
+```json
+{
+  "mcp": {
+    "github-repo-manager": {
+      "type": "local",
+      "command": "node",
+      "args": ["/absolute/path/to/github-repo-manager/dist/index.js"]
+    }
+  }
+}
+```
+
+### Kilo
+
+Add to `~/.config/kilo/kilo.json`:
 
 ```json
 {
@@ -89,6 +105,44 @@ Add to `.windsurf/mcp.json`:
     }
   }
 }
+```
+
+### Kiro
+
+Add to `~/.config/kiro/config.json` or project `.kiro/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "github-repo-manager": {
+      "command": "node",
+      "args": ["/absolute/path/to/github-repo-manager/dist/index.js"]
+    }
+  }
+}
+```
+
+### Cline
+
+Add to `.clinerules` or global config:
+
+```json
+{
+  "mcpServers": {
+    "github-repo-manager": {
+      "command": "node",
+      "args": ["/absolute/path/to/github-repo-manager/dist/index.js"]
+    }
+  }
+}
+```
+
+### Aider
+
+Add to `.aider.conf` or run with `--mcp` flag:
+
+```bash
+aider --mcp github-repo-manager=node:/absolute/path/to/github-repo-manager/dist/index.js
 ```
 
 ## Available Tools
