@@ -1,14 +1,14 @@
 ---
 name: github-repo-manager
-description: Quản lý GitHub repositories bằng gh CLI - liệt kê, xem chi tiết, tìm kiếm, xóa, tạo, đổi tên, đổi visibility, fork, archive repos. Sử dụng khi user nói "list repos", "delete repo", "create repo", "xóa repo", "liệt kê repo", "quản lý repo github", "my repos", "repo của tôi".
+description: Use when managing GitHub repositories - listing, viewing details, searching, deleting, creating, renaming, changing visibility, forking, or archiving repos via gh CLI.
 version: 1.2.0
-author: Thanh Danh
-license: MIT
+author: dt418
 source: https://github.com/dt418/github-repo-manager
 tags:
   - github
   - cli
   - repo-management
+  - automation
 platforms:
   - opencode
   - claude
