@@ -137,6 +137,96 @@ Add to `.clinerules` or global config:
 }
 ```
 
+### GitHub Copilot (VS Code)
+
+Add to VS Code settings `settings.json`:
+
+```json
+{
+  "github.copilot.mcpServers": {
+    "github-repo-manager": {
+      "command": "node",
+      "args": ["/absolute/path/to/github-repo-manager/dist/index.js"]
+    }
+  }
+}
+```
+
+### Zed
+
+Add to `~/.zed/settings.json` or project `.zed/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "github-repo-manager": {
+      "command": "node",
+      "args": ["/absolute/path/to/github-repo-manager/dist/index.js"]
+    }
+  }
+}
+```
+
+### Droid (droid-code)
+
+Add to `~/.config/droid/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "github-repo-manager": {
+      "command": "node",
+      "args": ["/absolute/path/to/github-repo-manager/dist/index.js"]
+    }
+  }
+}
+```
+
+### Continue (VS Code extension)
+
+Add to `~/.continue/config.json`:
+
+```json
+{
+  "mcpServers": {
+    "github-repo-manager": {
+      "command": "node",
+      "args": ["/absolute/path/to/github-repo-manager/dist/index.js"]
+    }
+  }
+}
+```
+
+### Goose
+
+Add to `~/.config/goose/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "github-repo-manager": {
+      "command": "node",
+      "args": ["/absolute/path/to/github-repo-manager/dist/index.js"]
+    }
+  }
+}
+```
+
+### Trae (trae.ai)
+
+Add to `~/.config/trae/config.json`:
+
+```json
+{
+  "mcpServers": {
+    "github-repo-manager": {
+      "command": "node",
+      "args": ["/absolute/path/to/github-repo-manager/dist/index.js"]
+    }
+  }
+}
+```
+
 ### Aider
 
 Add to `.aider.conf` or run with `--mcp` flag:
