@@ -153,8 +153,8 @@ gh repo list dt418 --json name,visibility,description,createdAt
 ### Delete multiple repos at once
 ```bash
 # Delete each repo
-gh repo delete dt418/repo1 --confirm
-gh repo delete dt418/repo2 --confirm
+gh repo delete dt418/repo1 --yes
+gh repo delete dt418/repo2 --yes
 ```
 
 ### Find unused repos (over 1 year old)
@@ -187,7 +187,7 @@ gh repo list dt418 --json name,description | jq '.[] | select(.description != nu
 
 ## Tips
 
-- Always use `--confirm` when deleting to avoid interactive prompts
+- Always use `--yes` when deleting to avoid interactive prompts
 - Use `gh api` to call GitHub API directly when advanced operations needed
 - Run `gh help <command>` to see more options
 - Check `gh auth status` before performing operations
