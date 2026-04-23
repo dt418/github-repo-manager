@@ -97,7 +97,7 @@ gh search repos "<keyword>" --owner <username> --limit 20
 
 **WARNING**: Permanent deletion, cannot be recovered!
 ```bash
-gh repo delete <owner>/<repo> --confirm
+gh repo delete <owner>/<repo> --yes
 ```
 
 ### 5. Create Repository
